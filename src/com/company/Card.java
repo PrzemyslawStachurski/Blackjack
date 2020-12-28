@@ -9,8 +9,8 @@ public class Card {
         this.value = value;
     }
 
-    public String ToString() {
-        return this.suit.toString() + "of" + this.value.toString();
+    public String ToStringCard() {
+        return this.value.toString() + " of " + this.suit.toString();
     }
 
     public Value getValue() {
