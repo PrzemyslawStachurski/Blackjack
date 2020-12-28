@@ -22,7 +22,7 @@ public class Deck {
     public String toString() {
         String cardListOutput = "";
         for (Card aCard : this.cards) {
-            cardListOutput += aCard.ToStringCard() + "\n";
+            cardListOutput += aCard.toStringCard() + "\n";
         }
         return cardListOutput;
     }
@@ -106,13 +106,30 @@ public class Deck {
             }
 
         }
-        for (int i = 0; i < aces; i++){
-            if (totalValue>10){
-                totalValue+=1;
-            }else{
-                totalValue+=11;
+        for (int i = 0; i < aces; i++) {
+            if (totalValue > 10) {
+                totalValue += 1;
+            } else {
+                totalValue += 11;
             }
         }
-            return totalValue;
+        return totalValue;
+    }
+
+    public int deckSize() {
+        return this.cards.size();
+    }
+
+    public void moveAllToDeck(Deck moveTo) {
+        int thisDeckSize = this.cards.size();
+
+        //putting cards into moveTo deck
+        for (int i =0; i<thisDeckSize;i++){
+            moveTo.addCard(this.getCard(i));
+        }
+        for (int i=0;i<thisDeckSize;i++){
+            this.removeCard(0);
+        }
+
     }
 }
