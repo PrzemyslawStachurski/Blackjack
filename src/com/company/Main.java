@@ -31,13 +31,15 @@ public class Main {
             }
             boolean endRound = false;
 
-            playerHand.draw(playingDeck);//drawing a players hand
-            playerHand.draw(playingDeck);
 
-            dealerHand.draw(playingDeck);//drawing a dealer hand
-            dealerHand.draw(playingDeck);
 
             while (true) {
+                playerHand.draw(playingDeck);//drawing a players hand
+                playerHand.draw(playingDeck);
+
+                dealerHand.draw(playingDeck);//drawing a dealer hand
+                dealerHand.draw(playingDeck);
+                
                 System.out.println("your hand:");
                 System.out.println(playerHand);
                 System.out.println("your value: " + playerHand.cardsValue());//displaying players value
