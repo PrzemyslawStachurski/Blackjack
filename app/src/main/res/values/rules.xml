@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Rules">
+        1. The goal of blackjack is to beat the dealer\'s hand without going over 21. \n \n
+        2. Face cards are worth 10. Aces are worth 1 or 11, whichever makes a better hand. \n \n
+        3. Each player starts with two cards, one of the dealer\'s cards is hidden until the end. \n \n
+        4. To \'Hit\' is to ask for another card. To \'Stand\' is to hold your total and end your turn. \n \n
+        5. If you go over 21 you bust, and the dealer wins regardless of the dealer\'s hand. \n \n
+        6. If you are dealt 21 from the start (Ace &amp; 10), you got a blackjack. \n \n
+        7. Blackjack means you win 1.5 the amount of your bet.  \n \n
+        8. Dealer will hit until his/her cards total 17 or higher. \n \n
+
+    </string>
+</resources>
