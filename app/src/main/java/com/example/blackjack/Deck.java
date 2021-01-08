@@ -172,9 +172,9 @@ public class Deck {
 
     }
 
-//    public int deckSize() {
-//        return this.cards.size();
-//    }
+    public int deckSize() {
+        return this.cards.size();
+    }
 
     public void moveAllToDeck(Deck moveTo) {
         int thisDeckSize = this.cards.size();

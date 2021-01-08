@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDialogFragment;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -252,6 +253,13 @@ public class play extends AppCompatActivity {
         builder.show();
     }
 
+    public void brokeCheck(){
+        if(playerMoney < 1){
+            Intent intent = new Intent(this, playAgain.class);
+            startActivity(intent);
+        }
+    }
+
     public void endingRound() {
         dealersCard1.animate().translationXBy(2000).rotation(360).setDuration(1);
         dealersCard2.animate().translationXBy(2000).rotation(360).setDuration(1);
@@ -307,7 +315,10 @@ public class play extends AppCompatActivity {
         betConfirmed = false;
 
 
+
     }
+
+
 
     public void bustCheck() {
         if (playerHand.cardsValue() > 21) { //losing end
@@ -321,19 +332,23 @@ public class play extends AppCompatActivity {
     public void dealerBustCheck() {
         if (dealerHand.cardsValue() > 21) {
             playerMoney += playerBet;
-
+            endRound= true;
             winDialog();
         }
     }
 
 
     public void updateValues() {
-        textViewDValue = (TextView) findViewById(R.id.textViewDValue);
-        textViewDValue.setText(String.valueOf(dealerHand.cardsValue()));
+        if (endRound){
+            textViewDValue = (TextView) findViewById(R.id.textViewDValue);
+            textViewDValue.setText(String.valueOf(dealerHand.cardsValue()));
+        }else{
+            textViewDValue = (TextView) findViewById(R.id.textViewDValue);
+            textViewDValue.setText(String.valueOf(dealerHand.getCard(0).getValue()));
+        }
 
         textViewYValue = (TextView) findViewById(R.id.textViewYValue);
         textViewYValue.setText(String.valueOf(playerHand.cardsValue()));
-
     }
 
     public void winCheck() {
@@ -363,10 +378,8 @@ public class play extends AppCompatActivity {
 
                 case 1:
                     dealerHand.draw(playingDeck);
-
                     dealersCard4.animate().translationXBy(-2000).rotation(360).setDuration(1000);
                     dealersCard4.setImageResource(dealerHand.getCard(3).getImageView());
-
                     dealerCount++;
                     updateValues();
                     dealerBustCheck();
@@ -374,10 +387,8 @@ public class play extends AppCompatActivity {
 
                 case 2:
                     dealerHand.draw(playingDeck);
-
                     dealersCard5.animate().translationXBy(-2000).rotation(360).setDuration(1000);
                     dealersCard5.setImageResource(dealerHand.getCard(4).getImageView());
-
                     dealerCount++;
                     updateValues();
                     dealerBustCheck();
@@ -387,22 +398,18 @@ public class play extends AppCompatActivity {
 
         if (playerHand.cardsValue() == dealerHand.cardsValue() && !endRound) {//push
             pushDialog();
-
             endRound = true;
             updateValues();
 
         }
         if (playerHand.cardsValue() > dealerHand.cardsValue() && !endRound) {//you win
-
             playerMoney += playerBet;
             winDialog();
-
             endRound = true;
             updateValues();
-
         }
         if (playerHand.cardsValue() < dealerHand.cardsValue() && !endRound){
-            playerMoney+= playerBet;
+            playerMoney-= playerBet;
             loseDialog();
             endRound=true;
             updateValues();
